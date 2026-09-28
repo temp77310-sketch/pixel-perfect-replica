@@ -1,24 +1,24 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Deck } from "@/components/deck/Deck";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "BMW M4 Competition · Presentación interactiva" },
+      {
+        name: "description",
+        content:
+          "Presentación interactiva en español sobre el BMW M4 Competition: historia, diseño, motor, prestaciones, transmisión, interior y versiones.",
+      },
+      { property: "og:title", content: "BMW M4 Competition · Presentación interactiva" },
+      {
+        property: "og:description",
+        content:
+          "Doce páginas interactivas sobre el BMW M4 Competition: historia del M3 al M4, motor S58 biturbo, 0–100 en 3,5 s y ajustes de conducción.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+  component: Deck,
 });
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
