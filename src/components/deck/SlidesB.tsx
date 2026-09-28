@@ -9,12 +9,12 @@ import m4side from "@/assets/m4-side.png";
 /* ────────────────────────────── 4 · DISEÑO ────────────────────────────── */
 
 const designSpots = [
-  { id: "parrilla", x: 41, y: 55, label: "Parrilla", text: "Uno de los elementos más reconocibles del diseño del M4: la parrilla vertical de gran tamaño, que además mejora la entrada de aire al motor." },
-  { id: "faros", x: 30, y: 47, label: "Faros", text: "Faros LED estrechos que estilizan el frontal y refuerzan la sensación de anchura del coche." },
-  { id: "carroceria", x: 66, y: 46, label: "Carrocería", text: "Aletas ensanchadas respecto al Serie 4 para alojar una vía más ancha y neumáticos de mayor tamaño." },
-  { id: "aire", x: 24, y: 70, label: "Entradas de aire", text: "Grandes aberturas laterales que llevan aire a los radiadores y a la refrigeración de los frenos." },
-  { id: "ruedas", x: 55, y: 80, label: "Ruedas y frenos", text: "Llantas M específicas y frenos de gran diámetro, con pinzas pintadas visibles a través de los radios." },
-  { id: "escapes", x: 88, y: 74, label: "Cuatro escapes", text: "Las cuatro salidas de escape son la firma visual clásica de un BMW M." },
+  { id: "parrilla", x: 21, y: 54, label: "Parrilla", text: "Uno de los elementos más reconocibles del diseño del M4: la parrilla vertical de gran tamaño, que además mejora la entrada de aire al motor." },
+  { id: "faros", x: 34, y: 47, label: "Faros", text: "Faros LED estrechos que estilizan el frontal y refuerzan la sensación de anchura del coche." },
+  { id: "carroceria", x: 63, y: 44, label: "Carrocería", text: "Aletas ensanchadas respecto al Serie 4 para alojar una vía más ancha y neumáticos de mayor tamaño." },
+  { id: "aire", x: 22, y: 75, label: "Entradas de aire", text: "Grandes aberturas laterales que llevan aire a los radiadores y a la refrigeración de los frenos." },
+  { id: "ruedas", x: 62, y: 64, label: "Ruedas y frenos", text: "Llantas M específicas y frenos de gran diámetro, con pinzas pintadas visibles a través de los radios." },
+  { id: "escapes", x: 92, y: 66, label: "Cuatro escapes", text: "Las cuatro salidas de escape son la firma visual clásica de un BMW M." },
 ];
 
 export function Slide04() {
@@ -234,7 +234,7 @@ export function Slide06() {
 
   return (
     <SlideShell>
-      <div className="flex flex-col gap-10">
+      <div className="flex flex-col gap-6">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <Eyebrow>06 · Prestaciones</Eyebrow>
@@ -247,14 +247,14 @@ export function Slide06() {
           </div>
         </div>
 
-        <div className="relative overflow-hidden rounded-3xl bg-secondary px-6 py-12 sm:px-12">
+        <div className="relative overflow-hidden rounded-3xl bg-secondary px-6 py-8 sm:px-12">
           <motion.img
             src={m4side}
             alt="BMW M4 Competition acelerando"
             loading="lazy"
             width={1408}
             height={800}
-            className="mx-auto w-full max-w-2xl"
+            className="mx-auto w-full max-w-lg"
             animate={{
               x: running ? [0, 8, 0] : 0,
               filter: `blur(${running ? progress * 2.2 : 0}px)`,
@@ -263,9 +263,9 @@ export function Slide06() {
             draggable={false}
           />
 
-          <div className="mt-8 flex items-end justify-center gap-3">
+          <div className="mt-4 flex items-end justify-center gap-3">
             <motion.span
-              className="tabular font-display text-7xl leading-none font-medium sm:text-8xl"
+              className="tabular font-display text-6xl leading-none font-medium"
               animate={{ filter: `blur(${running ? 1.4 : 0}px)` }}
             >
               {Math.round(speed)}
@@ -273,7 +273,7 @@ export function Slide06() {
             <span className="pb-3 text-sm tracking-[0.2em] text-muted-foreground">KM/H</span>
           </div>
 
-          <div className="mx-auto mt-8 h-[3px] w-full max-w-2xl overflow-hidden rounded-full bg-foreground/10">
+          <div className="mx-auto mt-5 h-[3px] w-full max-w-2xl overflow-hidden rounded-full bg-foreground/10">
             <motion.div className="m-stripe h-full" style={{ width: `${progress * 100}%` }} />
           </div>
 
@@ -292,7 +292,7 @@ export function Slide06() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
                 transition={spring}
-                className="mt-8 text-center"
+                className="mt-5 text-center"
               >
                 <span className="tabular font-display text-4xl font-medium">3,5 s</span>
                 <p className="mt-1 text-sm text-muted-foreground">de 0 a 100 km/h</p>
@@ -306,7 +306,7 @@ export function Slide06() {
           )}
         </div>
 
-        <div className="flex flex-wrap items-end gap-10">
+        <div className="flex flex-wrap items-end gap-8">
           <Stat value="3,5 s" label="0–100 km/h · Competition xDrive" />
           <Stat value="≈ 290 km/h" label="Velocidad máxima según versión y equipamiento" />
           <div className="max-w-sm">
