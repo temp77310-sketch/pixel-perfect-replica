@@ -264,7 +264,7 @@ export function Slide08() {
                           onClick={() => toggle(c.id)}
                           className="no-select rounded-full border border-hairline-dark px-3 py-1 text-xs tracking-wide"
                         >
-                          {c.options[state[c.id]]}
+                          {c.options[state[c.id] ?? 0]}
                         </button>
                       </div>
                     ))}
@@ -279,17 +279,17 @@ export function Slide08() {
                 </motion.div>
               ) : active ? (
                 <InfoCard key={active.id} tone="dark" title={active.label}>
-                  <p>{active.text[state[active.id]]}</p>
+                  <p>{active.text[state[active.id] ?? 0]}</p>
                   <button
                     type="button"
                     onClick={() => toggle(active.id)}
                     className="no-select mt-4 inline-flex items-center gap-3 rounded-full border border-hairline-dark px-4 py-2 text-xs tracking-[0.15em] uppercase"
                   >
-                    <span className={cn(state[active.id] === 0 && "text-ink-foreground")}>
+                    <span className={cn((state[active.id] ?? 0) === 0 && "text-ink-foreground")}>
                       {active.options[0]}
                     </span>
                     <span className="text-ink-muted">←→</span>
-                    <span className={cn(state[active.id] === 1 && "text-ink-foreground")}>
+                    <span className={cn((state[active.id] ?? 0) === 1 && "text-ink-foreground")}>
                       {active.options[1]}
                     </span>
                   </button>
@@ -313,7 +313,7 @@ export function Slide08() {
         <div data-no-swipe className="relative mx-auto aspect-square w-full max-w-[460px]">
           <motion.div
             className="absolute inset-[18%]"
-            animate={{ rotate: sel === "direccion" ? (state.direccion ? 16 : -16) : 0 }}
+            animate={{ rotate: sel === "direccion" ? (state["direccion"] ? 16 : -16) : 0 }}
             transition={softSpring}
           >
             <img

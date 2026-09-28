@@ -8,7 +8,7 @@ import hero from "@/assets/m4-hero.png";
 /* ──────────────────────────── 10 · VERSIONES ──────────────────────────── */
 
 export function Slide10() {
-  const [id, setId] = useState(versions[0].id);
+  const [id, setId] = useState(versions[0]!.id);
   const v = versions.find((x) => x.id === id)!;
 
   const rows: { label: string; value: string }[] = [

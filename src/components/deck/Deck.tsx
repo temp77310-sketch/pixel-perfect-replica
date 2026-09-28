@@ -80,7 +80,7 @@ export function Deck() {
     if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy)) go(index + (dx < 0 ? 1 : -1));
   };
 
-  const current = slides[index];
+  const current = slides[index]!;
   const tone = current.tone;
   const Current = current.C;
 

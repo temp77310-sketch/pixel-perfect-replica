@@ -165,7 +165,7 @@ export function Slide02() {
 
 export function Slide03() {
   const [i, setI] = useState(5);
-  const g = generations[i];
+  const g = generations[i]!;
 
   return (
     <SlideShell tone="dark">
