@@ -140,7 +140,7 @@ export function Slide05() {
           <div className="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-3">
             <Stat tone="dark" value="3.0 L" label="Cilindrada" />
             <Stat tone="dark" value="6" label="Cilindros en línea" />
-            <Stat tone="dark" value="Twin-Turbo" label="Sobrealimentación" />
+            <Stat tone="dark" value="Biturbo" label="Sobrealimentación" />
             <Stat tone="dark" value="530 CV" label="Potencia máxima" />
             <Stat tone="dark" value="650 Nm" label="Par máximo" />
           </div>

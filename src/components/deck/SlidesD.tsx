@@ -196,11 +196,11 @@ export function Slide12() {
 
   return (
     <SlideShell tone="dark">
-      <div className="flex flex-col items-center gap-10 text-center">
+      <div className="flex flex-col items-center gap-6 pb-10 text-center">
         <div
           data-no-swipe
           {...handlers}
-          className="no-select w-full max-w-3xl cursor-grab active:cursor-grabbing"
+          className="no-select w-full max-w-xl cursor-grab active:cursor-grabbing"
           style={{ perspective: 1400 }}
         >
           <motion.img
@@ -217,7 +217,7 @@ export function Slide12() {
           />
         </div>
 
-        <div className="max-w-2xl space-y-4 text-base leading-relaxed text-ink-muted sm:text-lg">
+        <div className="max-w-2xl space-y-2 text-base leading-relaxed text-ink-muted">
           <p>
             En conclusión, el BMW M4 combina potencia y deportividad, pero también se puede utilizar
             en el día a día.

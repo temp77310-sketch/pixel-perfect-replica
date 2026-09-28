@@ -45,7 +45,7 @@ export const generations: Generation[] = [
     importance: "Convirtió al M3 en un deportivo utilizable a diario sin perder carácter.",
     specs: [
       { label: "Motor", value: "3.0–3.2 L · 6 cil." },
-      { label: "Potencia", value: "286–321 CV según versión" },
+      { label: "Potencia", value: "286 – 321 CV" },
     ],
   },
   {
@@ -87,7 +87,7 @@ export const generations: Generation[] = [
     importance: "Separó las carrocerías en dos nombres y abrió la era turbo del M4.",
     specs: [
       { label: "Motor", value: "3.0 L · 6 cil. biturbo" },
-      { label: "Potencia", value: "431 CV (Competition: 450 CV)" },
+      { label: "Potencia", value: "431 CV · 450 CV Competition" },
     ],
   },
   {
@@ -100,8 +100,8 @@ export const generations: Generation[] = [
     production: NO_DATA,
     importance: "Es el M4 más potente y más rápido de serie hasta la fecha.",
     specs: [
-      { label: "Motor", value: "3.0 L · 6 cil. biturbo (S58)" },
-      { label: "Potencia", value: "510 CV · 530 CV en Competition xDrive" },
+      { label: "Motor", value: "3.0 L · 6 cil. biturbo" },
+      { label: "Potencia", value: "510 – 530 CV" },
     ],
   },
 ];
