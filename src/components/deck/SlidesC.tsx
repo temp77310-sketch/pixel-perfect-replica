@@ -461,7 +461,7 @@ export function Slide09() {
           </AnimatePresence>
         </div>
 
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 pb-8">
           {interiorSpots.map((s) => (
             <PillButton key={s.id} active={sel === s.id} onClick={() => setSel(sel === s.id ? null : s.id)}>
               {s.label}
