@@ -26,7 +26,7 @@ export function Slide07() {
 
   return (
     <SlideShell>
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-5 pb-6">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <Eyebrow>07 · Transmisión y tracción</Eyebrow>
@@ -41,7 +41,7 @@ export function Slide07() {
         </div>
 
         {/* Cadena mecánica */}
-        <div data-no-swipe className="relative rounded-3xl bg-secondary p-5 sm:p-7">
+        <div data-no-swipe className="relative rounded-3xl bg-secondary p-5">
           <div className="relative flex items-stretch justify-between gap-2 sm:gap-4">
             {chain.map((c, idx) => (
               <div key={c.id} className="flex flex-1 items-center gap-2 sm:gap-4">
@@ -49,7 +49,7 @@ export function Slide07() {
                   type="button"
                   onClick={() => setSel(c.id)}
                   className={cn(
-                    "no-select flex-1 rounded-2xl px-2 py-4 text-center text-xs font-medium transition-colors sm:text-sm",
+                    "no-select flex-1 rounded-2xl px-2 py-3 text-center text-xs font-medium transition-colors sm:text-sm",
                     sel === c.id ? "bg-card shadow-soft" : "text-muted-foreground hover:bg-card/60",
                   )}
                 >
@@ -68,8 +68,8 @@ export function Slide07() {
             ))}
           </div>
 
-          <div className="mt-6 grid gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:items-center">
-            <div className="relative aspect-[4/3] w-full">
+          <div className="mt-4 grid gap-5 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:items-center">
+            <div className="relative aspect-[16/10] w-full">
               <AnimatePresence mode="wait">
                 <motion.img
                   key={sel}
@@ -97,7 +97,7 @@ export function Slide07() {
         </div>
 
         {/* Reparto xDrive */}
-        <div data-no-swipe className="rounded-3xl border border-border p-6">
+        <div data-no-swipe className="rounded-3xl border border-border p-5">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
               <h3 className="text-lg">M xDrive · reparto entre ejes</h3>
@@ -118,14 +118,14 @@ export function Slide07() {
             value={front}
             onChange={(e) => setFront(Number(e.target.value))}
             aria-label="Reparto de fuerza al eje delantero"
-            className="mt-5 w-full accent-[var(--m-red)]"
+            className="mt-4 w-full accent-[var(--m-red)]"
           />
 
-          <div className="mt-5 flex h-3 overflow-hidden rounded-full bg-foreground/10">
+          <div className="mt-4 flex h-2.5 overflow-hidden rounded-full bg-foreground/10">
             <motion.div className="bg-m-blue" animate={{ width: `${front}%` }} transition={spring} />
             <motion.div className="bg-m-navy" animate={{ width: `${100 - front}%` }} transition={spring} />
           </div>
-          <p className="mt-4 text-sm text-muted-foreground">
+          <p className="mt-3 text-sm text-muted-foreground">
             {front === 0
               ? "Con 0% delante el coche se comporta como un propulsión trasera clásica: es el modo 2WD."
               : "Cuando el eje trasero pierde agarre, el sistema puede enviar parte de la fuerza al eje delantero para mejorar la tracción."}
