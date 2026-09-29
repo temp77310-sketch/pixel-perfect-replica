@@ -100,35 +100,38 @@ export function Slide07() {
         <div data-no-swipe className="rounded-3xl border border-border p-5">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
-              <h3 className="text-lg">M xDrive · reparto entre ejes</h3>
+            <h3 className="text-lg">M xDrive · modos de tracción</h3>
               <p className="mt-1 text-sm text-muted-foreground">
-                Mueve el control para ver cómo puede variar la fuerza enviada al eje delantero.
+                Elige un modo para ver cómo se reparte la fuerza (valores orientativos).
               </p>
             </div>
-            <div className="tabular flex gap-6 text-sm">
-              <span>Delantero <strong>{front}%</strong></span>
-              <span>Trasero <strong>{100 - front}%</strong></span>
+            <div className="flex flex-wrap gap-2">
+              {xModes.map((m) => (
+                <PillButton key={m.id} active={front === m.front} onClick={() => setFront(m.front)}>
+                  {m.label}
+                </PillButton>
+              ))}
             </div>
           </div>
 
-          <input
-            type="range"
-            min={0}
-            max={50}
-            value={front}
-            onChange={(e) => setFront(Number(e.target.value))}
-            aria-label="Reparto de fuerza al eje delantero"
-            className="mt-4 w-full accent-[var(--m-red)]"
-          />
-
-          <div className="mt-4 flex h-2.5 overflow-hidden rounded-full bg-foreground/10">
-            <motion.div className="bg-m-blue" animate={{ width: `${front}%` }} transition={spring} />
-            <motion.div className="bg-m-navy" animate={{ width: `${100 - front}%` }} transition={spring} />
+          <div className="mt-5 grid grid-cols-2 gap-3">
+            {[
+              { l: "Eje delantero", v: front, c: "bg-m-blue" },
+              { l: "Eje trasero", v: 100 - front, c: "bg-m-navy" },
+            ].map((a) => (
+              <div key={a.l} className="rounded-2xl bg-secondary p-4">
+                <div className="text-[11px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">
+                  {a.l}
+                </div>
+                <div className="tabular font-display mt-1 text-3xl">{a.v}%</div>
+                <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-foreground/10">
+                  <motion.div className={cn("h-full", a.c)} animate={{ width: `${a.v}%` }} transition={spring} />
+                </div>
+              </div>
+            ))}
           </div>
           <p className="mt-3 text-sm text-muted-foreground">
-            {front === 0
-              ? "Con 0% delante el coche se comporta como un propulsión trasera clásica: es el modo 2WD."
-              : "Cuando el eje trasero pierde agarre, el sistema puede enviar parte de la fuerza al eje delantero para mejorar la tracción."}
+            {xModes.find((m) => m.front === front)?.text}
           </p>
         </div>
       </div>

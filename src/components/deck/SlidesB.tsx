@@ -88,26 +88,22 @@ export function Slide04() {
             Toca cualquier punto para acercarte a esa zona. Arrastra sobre el coche para girarlo
             ligeramente.
           </p>
-          <div className="mt-6 min-h-[150px]">
+          <div className="mt-6 flex flex-wrap gap-2">
+            {designSpots.map((s) => (
+              <PillButton key={s.id} active={sel === s.id} onClick={() => setSel(s.id)}>
+                {s.label}
+              </PillButton>
+            ))}
+            {spot && (
+              <PillButton onClick={() => setSel(null)}>← Ver coche entero</PillButton>
+            )}
+          </div>
+          <div className="mt-5 min-h-[150px]">
             <AnimatePresence mode="wait">
-              {spot ? (
+              {spot && (
                 <InfoCard key={spot.id} title={spot.label}>
                   {spot.text}
                 </InfoCard>
-              ) : (
-                <motion.div
-                  key="list"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="flex flex-wrap gap-2"
-                >
-                  {designSpots.map((s) => (
-                    <PillButton key={s.id} onClick={() => setSel(s.id)}>
-                      {s.label}
-                    </PillButton>
-                  ))}
-                </motion.div>
               )}
             </AnimatePresence>
           </div>
