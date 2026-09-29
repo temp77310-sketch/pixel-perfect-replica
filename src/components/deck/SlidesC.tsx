@@ -18,6 +18,12 @@ const chain = [
   { id: "ruedas", label: "Ruedas", text: "Las ruedas convierten ese giro en avance. El diferencial M activo decide cuánta fuerza recibe cada rueda trasera según el agarre." },
 ];
 
+const xModes = [
+  { id: "4wd", label: "4WD", front: 40, text: "Modo 4WD: el sistema reparte la fuerza entre ambos ejes para máxima tracción y estabilidad, con prioridad trasera." },
+  { id: "4wds", label: "4WD Sport", front: 20, text: "Modo 4WD Sport: envía más fuerza al eje trasero para un comportamiento más deportivo, manteniendo la ayuda delantera." },
+  { id: "2wd", label: "2WD", front: 0, text: "Modo 2WD: toda la fuerza va al eje trasero, como un propulsión clásico. Pensado para circuito y conductores expertos." },
+];
+
 export function Slide07() {
   const [sel, setSel] = useState("caja");
   const [front, setFront] = useState(0);
