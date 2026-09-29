@@ -26,7 +26,7 @@ const xModes = [
 
 export function Slide07() {
   const [sel, setSel] = useState("caja");
-  const [front, setFront] = useState(0);
+  const [front, setFront] = useState(40);
   const node = chain.find((c) => c.id === sel)!;
   const img = sel === "caja" ? gearbox : sel === "ruedas" ? suspension : drivetrain;
 

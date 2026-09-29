@@ -25,6 +25,33 @@ export function Deck() {
   const [[index, dir], setState] = useState<[number, number]>([0, 1]);
   const start = useRef<{ x: number; y: number } | null>(null);
   const locked = useRef(false);
+  const [isFs, setIsFs] = useState(false);
+
+  const toggleFs = useCallback(() => {
+    if (document.fullscreenElement) void document.exitFullscreen().catch(() => {});
+    else void document.documentElement.requestFullscreen?.().catch(() => {});
+  }, []);
+
+  // Pantalla completa automática: se intenta al entrar y, si el navegador
+  // lo bloquea, en el primer toque/clic/tecla.
+  useEffect(() => {
+    const onChange = () => setIsFs(!!document.fullscreenElement);
+    document.addEventListener("fullscreenchange", onChange);
+    const tryFs = () => {
+      if (!document.fullscreenElement)
+        void document.documentElement.requestFullscreen?.().catch(() => {});
+      window.removeEventListener("pointerup", tryFs);
+      window.removeEventListener("keydown", tryFs);
+    };
+    void document.documentElement.requestFullscreen?.().catch(() => {});
+    window.addEventListener("pointerup", tryFs);
+    window.addEventListener("keydown", tryFs);
+    return () => {
+      document.removeEventListener("fullscreenchange", onChange);
+      window.removeEventListener("pointerup", tryFs);
+      window.removeEventListener("keydown", tryFs);
+    };
+  }, []);
 
   const go = useCallback((next: number) => {
     setState(([cur]) => {
@@ -119,14 +146,37 @@ export function Deck() {
         >
           {current.title}
         </span>
-        <span
-          className={cn(
-            "tabular text-[11px] tracking-[0.22em]",
-            tone === "dark" ? "text-ink-muted" : "text-muted-foreground",
-          )}
-        >
-          {String(index + 1).padStart(2, "0")} / 12
-        </span>
+        <div className="pointer-events-auto flex items-center gap-4">
+          <span
+            className={cn(
+              "tabular text-[11px] tracking-[0.22em]",
+              tone === "dark" ? "text-ink-muted" : "text-muted-foreground",
+            )}
+          >
+            {String(index + 1).padStart(2, "0")} / 12
+          </span>
+          <button
+            type="button"
+            onClick={toggleFs}
+            aria-label={isFs ? "Salir de pantalla completa" : "Pantalla completa"}
+            className={cn(
+              "no-select flex h-9 w-9 items-center justify-center rounded-full border",
+              tone === "dark"
+                ? "border-hairline-dark bg-white/5 text-ink-foreground"
+                : "border-border bg-card text-foreground shadow-soft",
+            )}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d={isFs ? "M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5" : "M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"}
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
 
       {/* Puntos */}
