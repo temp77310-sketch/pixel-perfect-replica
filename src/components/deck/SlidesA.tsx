@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useCallback, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+import { useTr } from "./i18n";
 import { Eyebrow, InfoCard, PillButton, SlideShell, Source, Stat, softSpring, spring, useDragRotate } from "./ui";
 import { generations } from "./data";
 import hero from "@/assets/m4-hero.png";
@@ -10,23 +11,22 @@ import m4side from "@/assets/m4-side.png";
 /* ───────────────────────────── 1 · PORTADA ───────────────────────────── */
 
 export function Slide01() {
+  const tr = useTr();
   const { rot, handlers } = useDragRotate(12);
 
   return (
     <SlideShell tone="dark">
       <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)]">
         <div>
-          <Eyebrow tone="dark">Presentación</Eyebrow>
+          <Eyebrow tone="dark">{tr("Presentación")}</Eyebrow>
           <h1 className="mt-6 text-5xl leading-[0.95] sm:text-6xl lg:text-7xl">
             BMW M4
             <br />
             <span className="text-ink-muted">Competition</span>
           </h1>
           <p className="mt-8 max-w-md text-base leading-relaxed text-ink-muted sm:text-lg">
-            Hola, me llamo Moon y hoy voy a presentaros el BMW M4 Competition. Voy a hablar sobre su
-            historia, diseño, motor, prestaciones, tecnología y algunas de sus características
-            principales.
-          </p>
+            {tr("Hola, me llamo Moon y hoy voy a presentaros el BMW M4 Competition. Voy a hablar sobre su historia, diseño, motor, prestaciones, tecnología y algunas de sus características principales.")}
+</p>
         </div>
 
         <div
@@ -52,8 +52,8 @@ export function Slide01() {
             />
           </motion.div>
           <p className="mt-4 text-center text-[11px] uppercase tracking-[0.2em] text-ink-muted/70">
-            Arrastra para inspeccionar
-          </p>
+            {tr("Arrastra para inspeccionar")}
+</p>
         </div>
       </div>
     </SlideShell>
@@ -70,6 +70,7 @@ const morphNotes = [
 ];
 
 export function Slide02() {
+  const tr = useTr();
   const [pos, setPos] = useState(18);
   const ref = useRef<HTMLDivElement>(null);
   const dragging = useRef(false);
@@ -87,12 +88,11 @@ export function Slide02() {
     <SlideShell>
       <div className="flex flex-col gap-8">
         <div className="max-w-2xl">
-          <Eyebrow>02 · Qué es</Eyebrow>
-          <h2 className="mt-5 text-4xl sm:text-5xl">De Serie 4 a M4</h2>
+          <Eyebrow>{tr("02 · Qué es")}</Eyebrow>
+          <h2 className="mt-5 text-4xl sm:text-5xl">{tr("De Serie 4 a M4")}</h2>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-            El BMW M4 es la versión deportiva del BMW Serie 4. La M viene de BMW Motorsport, la parte
-            de BMW encargada de crear sus coches más deportivos y potentes.
-          </p>
+            {tr("El BMW M4 es la versión deportiva del BMW Serie 4. La M viene de BMW Motorsport, la parte de BMW encargada de crear sus coches más deportivos y potentes.")}
+</p>
         </div>
 
         <div
@@ -140,8 +140,8 @@ export function Slide02() {
           </div>
 
           <span className="absolute top-5 left-6 text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-            Serie 4
-          </span>
+            {tr("Serie 4")}
+</span>
           <span className="absolute top-5 right-6 text-[11px] font-semibold uppercase tracking-[0.2em] text-foreground">
             M4 Competition
           </span>
@@ -150,8 +150,8 @@ export function Slide02() {
         <div className="min-h-[92px]">
           <AnimatePresence mode="wait">
             {note && (
-              <InfoCard key={note.title} title={note.title} className="max-w-xl">
-                {note.text}
+              <InfoCard key={tr(note.title)} title={tr(note.title)} className="max-w-xl">
+                {tr(note.text)}
               </InfoCard>
             )}
           </AnimatePresence>
@@ -164,6 +164,7 @@ export function Slide02() {
 /* ────────────────────────────── 3 · HISTORIA ────────────────────────────── */
 
 export function Slide03() {
+  const tr = useTr();
   const [i, setI] = useState(5);
   const g = generations[i]!;
 
@@ -172,12 +173,12 @@ export function Slide03() {
       <div className="flex flex-col gap-7">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <Eyebrow tone="dark">03 · Historia</Eyebrow>
-            <h2 className="mt-5 text-4xl sm:text-5xl">Seis generaciones</h2>
+            <Eyebrow tone="dark">{tr("03 · Historia")}</Eyebrow>
+            <h2 className="mt-5 text-4xl sm:text-5xl">{tr("Seis generaciones")}</h2>
           </div>
           <p className="max-w-xs text-sm text-ink-muted">
-            De la homologación de carreras del E30 al M4 actual. Selecciona una generación.
-          </p>
+            {tr("De la homologación de carreras del E30 al M4 actual. Selecciona una generación.")}
+</p>
         </div>
 
         {/* Escenario 3D */}
@@ -269,28 +270,28 @@ export function Slide03() {
             className="grid gap-5 md:grid-cols-3"
           >
             <div className="glass-panel-dark rounded-3xl p-5">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-muted">Especial</p>
-              <p className="mt-2 text-sm leading-relaxed">{g.special}</p>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-muted">{tr("Especial")}</p>
+              <p className="mt-2 text-sm leading-relaxed">{tr(g.special)}</p>
             </div>
             <div className="glass-panel-dark rounded-3xl p-5">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-muted">Producción</p>
-              <p className="mt-2 text-sm leading-relaxed">{g.production}</p>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-muted">{tr("Producción")}</p>
+              <p className="mt-2 text-sm leading-relaxed">{tr(g.production)}</p>
             </div>
             <div className="glass-panel-dark rounded-3xl p-5">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-muted">Importancia</p>
-              <p className="mt-2 text-sm leading-relaxed">{g.importance}</p>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-muted">{tr("Importancia")}</p>
+              <p className="mt-2 text-sm leading-relaxed">{tr(g.importance)}</p>
             </div>
           </motion.div>
         </AnimatePresence>
 
         <div className="flex flex-wrap items-center gap-x-10 gap-y-4">
           {g.specs.map((s) => (
-            <Stat key={s.label} tone="dark" value={s.value} label={s.label} />
+            <Stat key={tr(s.label)} tone="dark" value={tr(s.value)} label={tr(s.label)} />
           ))}
           <div className="ml-auto max-w-sm">
             <Source tone="dark">
-              Cifras históricas aproximadas ampliamente citadas; cuando no existe dato oficial se indica.
-            </Source>
+              {tr("Cifras históricas aproximadas ampliamente citadas; cuando no existe dato oficial se indica.")}
+</Source>
           </div>
         </div>
       </div>

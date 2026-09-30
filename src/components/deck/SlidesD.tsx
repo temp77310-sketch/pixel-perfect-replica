@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useTr } from "./i18n";
 import { Eyebrow, PillButton, SlideShell, Source, softSpring, spring, useDragRotate } from "./ui";
 import { sources, versions } from "./data";
 import hero from "@/assets/m4-hero.png";
@@ -8,6 +9,7 @@ import hero from "@/assets/m4-hero.png";
 /* ──────────────────────────── 10 · VERSIONES ──────────────────────────── */
 
 export function Slide10() {
+  const tr = useTr();
   const [id, setId] = useState(versions[0]!.id);
   const v = versions.find((x) => x.id === id)!;
 
@@ -23,8 +25,8 @@ export function Slide10() {
       <div className="flex flex-col gap-8">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <Eyebrow>10 · Versiones</Eyebrow>
-            <h2 className="mt-5 text-4xl sm:text-5xl">Tres formas del mismo coche</h2>
+            <Eyebrow>{tr("10 · Versiones")}</Eyebrow>
+            <h2 className="mt-5 text-4xl sm:text-5xl">{tr("Tres formas del mismo coche")}</h2>
           </div>
           <div data-no-swipe className="flex flex-wrap gap-2">
             {versions.map((x) => (
@@ -61,9 +63,9 @@ export function Slide10() {
           <div>
             <div className="divide-y divide-border border-y border-border">
               {rows.map((r) => (
-                <div key={r.label} className="flex items-baseline justify-between gap-6 py-4">
+                <div key={tr(r.label)} className="flex items-baseline justify-between gap-6 py-4">
                   <span className="text-[11px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">
-                    {r.label}
+                    {tr(r.label)}
                   </span>
                   <AnimatePresence mode="wait">
                     <motion.span
@@ -74,18 +76,17 @@ export function Slide10() {
                       transition={{ duration: 0.25 }}
                       className="tabular text-right text-sm font-medium"
                     >
-                      {r.value}
+                      {tr(r.value)}
                     </motion.span>
                   </AnimatePresence>
                 </div>
               ))}
             </div>
-            <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{v.focus}</p>
+            <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{tr(v.focus)}</p>
             <div className="mt-5">
               <Source>
-                Las tres comparten el mismo motor de 3.0 L biturbo con distinta puesta a punto. Los
-                pesos dependen de la homologación y del equipamiento elegido.
-              </Source>
+                {tr("Las tres comparten el mismo motor de 3.0 L biturbo con distinta puesta a punto. Los pesos dependen de la homologación y del equipamiento elegido.")}
+</Source>
             </div>
           </div>
         </div>
@@ -110,6 +111,7 @@ const cons = [
 ];
 
 export function Slide11() {
+  const tr = useTr();
   const [sel, setSel] = useState<string | null>(null);
 
   const column = (
@@ -123,7 +125,7 @@ export function Slide11() {
           className={cn("h-[3px] w-8 rounded-full", accent === "up" ? "bg-m-blue" : "bg-m-red")}
         />
         <h3 className="text-[11px] font-semibold tracking-[0.2em] text-muted-foreground uppercase">
-          {title}
+          {tr(title)}
         </h3>
       </div>
       <div className="mt-4 space-y-2">
@@ -140,7 +142,7 @@ export function Slide11() {
               )}
             >
               <div className="flex items-center justify-between gap-4">
-                <span className="text-base font-medium">{it.label}</span>
+                <span className="text-base font-medium">{tr(it.label)}</span>
                 <motion.span
                   animate={{ rotate: open ? 45 : 0 }}
                   transition={spring}
@@ -158,7 +160,7 @@ export function Slide11() {
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden text-sm leading-relaxed text-muted-foreground"
                   >
-                    <span className="mt-2 block">{it.text}</span>
+                    <span className="mt-2 block">{tr(it.text)}</span>
                   </motion.p>
                 )}
               </AnimatePresence>
@@ -173,11 +175,11 @@ export function Slide11() {
     <SlideShell>
       <div className="flex flex-col gap-8">
         <div className="max-w-2xl">
-          <Eyebrow>11 · Balance</Eyebrow>
-          <h2 className="mt-5 text-4xl sm:text-5xl">Lo bueno y lo que hay que asumir</h2>
+          <Eyebrow>{tr("11 · Balance")}</Eyebrow>
+          <h2 className="mt-5 text-4xl sm:text-5xl">{tr("Lo bueno y lo que hay que asumir")}</h2>
           <p className="mt-4 text-base text-muted-foreground">
-            Toca cada punto para ver la explicación.
-          </p>
+            {tr("Toca cada punto para ver la explicación.")}
+</p>
         </div>
         <div data-no-swipe className="grid gap-5 md:grid-cols-2">
           {column("Ventajas", pros, "up")}
@@ -191,6 +193,7 @@ export function Slide11() {
 /* ──────────────────────────── 12 · CONCLUSIÓN ──────────────────────────── */
 
 export function Slide12() {
+  const tr = useTr();
   const { rot, handlers } = useDragRotate(10);
   const [showSources, setShowSources] = useState(false);
 
@@ -219,11 +222,10 @@ export function Slide12() {
 
         <div className="max-w-2xl space-y-2 text-base leading-relaxed text-ink-muted">
           <p>
-            En conclusión, el BMW M4 combina potencia y deportividad, pero también se puede utilizar
-            en el día a día.
-          </p>
-          <p>Lo que más destaca es su motor, aceleración, tecnología y diseño.</p>
-          <p className="text-ink-foreground">Gracias por escucharme.</p>
+            {tr("En conclusión, el BMW M4 combina potencia y deportividad, pero también se puede utilizar en el día a día.")}
+</p>
+          <p>{tr("Lo que más destaca es su motor, aceleración, tecnología y diseño.")}</p>
+          <p className="text-ink-foreground">{tr("Gracias por escucharme.")}</p>
         </div>
 
         <div>
@@ -233,7 +235,7 @@ export function Slide12() {
 
         <div data-no-swipe className="w-full max-w-2xl">
           <PillButton tone="dark" onClick={() => setShowSources((v) => !v)}>
-            {showSources ? "Ocultar fuentes" : "Fuentes"}
+            {tr(showSources ? "Ocultar fuentes" : "Fuentes")}
           </PillButton>
           <AnimatePresence>
             {showSources && (
@@ -245,8 +247,8 @@ export function Slide12() {
                 className="mt-5 space-y-2 overflow-hidden text-left"
               >
                 {sources.map((s) => (
-                  <li key={s}>
-                    <Source tone="dark">{s}</Source>
+                  <li key={tr(s)}>
+                    <Source tone="dark">{tr(s)}</Source>
                   </li>
                 ))}
               </motion.ul>

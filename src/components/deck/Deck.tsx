@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+import { useLang, useTr } from "./i18n";
 import { Slide01, Slide02, Slide03 } from "./SlidesA";
 import { Slide04, Slide05, Slide06 } from "./SlidesB";
 import { Slide07, Slide08, Slide09 } from "./SlidesC";
@@ -26,6 +27,8 @@ export function Deck() {
   const start = useRef<{ x: number; y: number } | null>(null);
   const locked = useRef(false);
   const [isFs, setIsFs] = useState(false);
+  const tr = useTr();
+  const lang = useLang();
 
   const toggleFs = useCallback(() => {
     if (document.fullscreenElement) void document.exitFullscreen().catch(() => {});
@@ -144,7 +147,7 @@ export function Deck() {
             tone === "dark" ? "text-ink-muted" : "text-muted-foreground",
           )}
         >
-          {current.title}
+          {tr(current.title)}
         </span>
         <div className="pointer-events-auto flex items-center gap-4">
           <span
@@ -158,7 +161,7 @@ export function Deck() {
           <button
             type="button"
             onClick={toggleFs}
-            aria-label={isFs ? "Salir de pantalla completa" : "Pantalla completa"}
+            aria-label={tr(isFs ? "Salir de pantalla completa" : "Pantalla completa")}
             className={cn(
               "no-select flex h-9 w-9 items-center justify-center rounded-full border",
               tone === "dark"
@@ -188,7 +191,7 @@ export function Deck() {
           <button
             key={s.id}
             type="button"
-            aria-label={`Ir a ${s.title}`}
+            aria-label={lang === "eu" ? `${tr(s.title)}: joan` : `Ir a ${s.title}`}
             onClick={() => go(i)}
             className="no-select p-1.5"
           >
@@ -229,13 +232,14 @@ function NavArrow({
   disabled: boolean;
   onClick: () => void;
 }) {
+  const tr = useTr();
   return (
     <motion.button
       type="button"
       onClick={onClick}
       disabled={disabled}
       whileTap={{ scale: 0.9 }}
-      aria-label={dir === "prev" ? "Anterior" : "Siguiente"}
+      aria-label={tr(dir === "prev" ? "Anterior" : "Siguiente")}
       className={cn(
         "no-select flex h-10 w-10 items-center justify-center rounded-full border transition-opacity",
         tone === "dark"
