@@ -57,7 +57,11 @@ export function LanguagePicker({ onPick }: { onPick: (l: Lang) => void }) {
               whileTap={{ scale: 0.94, y: 1 }}
               className="glass-panel no-select flex items-center gap-2.5 rounded-full px-6 py-3 text-sm font-medium text-foreground shadow-lift"
             >
-              <span aria-hidden="true">{b.icon}</span>
+              {b.l === "es" ? (
+                <span aria-hidden="true" className="h-3.5 w-5 overflow-hidden rounded-[3px] shadow-soft" style={{ background: "linear-gradient(#c60b1e 25%, #ffc400 25% 75%, #c60b1e 75%)" }} />
+              ) : (
+                <span aria-hidden="true" className="h-3 w-3 rounded-full shadow-soft" style={{ background: "#009b48" }} />
+              )}
               {b.label}
             </motion.button>
           ))}
