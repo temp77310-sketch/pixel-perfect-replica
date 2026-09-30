@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useTr } from "./i18n";
 import { Eyebrow, Hotspot, InfoCard, PillButton, SlideShell, Source, Stat, softSpring, spring } from "./ui";
 import gearbox from "@/assets/gearbox.png";
 import drivetrain from "@/assets/drivetrain.png";
@@ -25,6 +26,7 @@ const xModes = [
 ];
 
 export function Slide07() {
+  const tr = useTr();
   const [sel, setSel] = useState("caja");
   const [front, setFront] = useState(40);
   const node = chain.find((c) => c.id === sel)!;
@@ -35,14 +37,13 @@ export function Slide07() {
       <div className="flex flex-col gap-5 pb-6">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <Eyebrow>07 · Transmisión y tracción</Eyebrow>
-            <h2 className="mt-5 text-4xl sm:text-5xl">Cómo llega la fuerza al suelo</h2>
+            <Eyebrow>{tr("07 · Transmisión y tracción")}</Eyebrow>
+            <h2 className="mt-5 text-4xl sm:text-5xl">{tr("Cómo llega la fuerza al suelo")}</h2>
           </div>
           <div className="max-w-xs">
             <Source>
-              Caja automática M Steptronic de 8 velocidades. La tracción total M xDrive está
-              disponible según versión y puede pasar a modo 2WD (solo eje trasero).
-            </Source>
+              {tr("Caja automática M Steptronic de 8 velocidades. La tracción total M xDrive está disponible según versión y puede pasar a modo 2WD (solo eje trasero).")}
+</Source>
           </div>
         </div>
 
@@ -59,7 +60,7 @@ export function Slide07() {
                     sel === c.id ? "bg-card shadow-soft" : "text-muted-foreground hover:bg-card/60",
                   )}
                 >
-                  {c.label}
+                  {tr(c.label)}
                 </button>
                 {idx < chain.length - 1 && (
                   <div className="relative hidden h-px w-10 bg-foreground/15 sm:block">
@@ -80,7 +81,7 @@ export function Slide07() {
                 <motion.img
                   key={sel}
                   src={img}
-                  alt={node.label}
+                  alt={tr(node.label)}
                   loading="lazy"
                   width={1200}
                   height={900}
@@ -95,8 +96,8 @@ export function Slide07() {
             </div>
 
             <AnimatePresence mode="wait">
-              <InfoCard key={node.id} title={node.label}>
-                {node.text}
+              <InfoCard key={node.id} title={tr(node.label)}>
+                {tr(node.text)}
               </InfoCard>
             </AnimatePresence>
           </div>
@@ -106,10 +107,10 @@ export function Slide07() {
         <div data-no-swipe className="rounded-3xl border border-border p-5">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
-            <h3 className="text-lg">M xDrive · modos de tracción</h3>
+            <h3 className="text-lg">{tr("M xDrive · modos de tracción")}</h3>
               <p className="mt-1 text-sm text-muted-foreground">
-                Elige un modo para ver cómo se reparte la fuerza (valores orientativos).
-              </p>
+                {tr("Elige un modo para ver cómo se reparte la fuerza (valores orientativos).")}
+</p>
             </div>
             <div className="flex flex-wrap gap-2">
               {xModes.map((m) => (
@@ -125,9 +126,9 @@ export function Slide07() {
               { l: "Eje delantero", v: front, c: "bg-m-blue" },
               { l: "Eje trasero", v: 100 - front, c: "bg-m-navy" },
             ].map((a) => (
-              <div key={a.l} className="rounded-2xl bg-secondary p-4">
+              <div key={tr(a.l)} className="rounded-2xl bg-secondary p-4">
                 <div className="text-[11px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">
-                  {a.l}
+                  {tr(a.l)}
                 </div>
                 <div className="tabular font-display mt-1 text-3xl">{a.v}%</div>
                 <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-foreground/10">
@@ -137,7 +138,7 @@ export function Slide07() {
             ))}
           </div>
           <p className="mt-3 text-sm text-muted-foreground">
-            {xModes.find((m) => m.front === front)?.text}
+            {tr(xModes.find((m) => m.front === front)?.text ?? "")}
           </p>
         </div>
       </div>
@@ -215,6 +216,7 @@ const controls: Ctrl[] = [
 ];
 
 export function Slide08() {
+  const tr = useTr();
   const [state, setState] = useState<Record<string, 0 | 1>>({
     motor: 0, direccion: 0, suspension: 0, cambio: 0, traccion: 0,
   });
@@ -229,24 +231,23 @@ export function Slide08() {
     <SlideShell tone="dark">
       <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:items-center">
         <div data-no-swipe>
-          <Eyebrow tone="dark">08 · Ajustes de conducción</Eyebrow>
-          <h2 className="mt-5 text-4xl sm:text-5xl">Tú decides cómo se comporta.</h2>
+          <Eyebrow tone="dark">{tr("08 · Ajustes de conducción")}</Eyebrow>
+          <h2 className="mt-5 text-4xl sm:text-5xl">{tr("Tú decides cómo se comporta.")}</h2>
           <p className="mt-4 max-w-md text-base leading-relaxed text-ink-muted">
-            El M4 permite modificar diferentes ajustes del coche para adaptar su comportamiento a la
-            forma de conducir.
-          </p>
+            {tr("El M4 permite modificar diferentes ajustes del coche para adaptar su comportamiento a la forma de conducir.")}
+</p>
 
           <div className="mt-8 flex flex-wrap gap-2">
             <PillButton tone="dark" active={summary} onClick={() => setSummary((v) => !v)}>
-              Personaliza
-            </PillButton>
+              {tr("Personaliza")}
+</PillButton>
             {summary && (
               <PillButton
                 tone="dark"
                 onClick={() => setState({ motor: 0, direccion: 0, suspension: 0, cambio: 0, traccion: 0 })}
               >
-                Reiniciar
-              </PillButton>
+                {tr("Reiniciar")}
+</PillButton>
             )}
           </div>
 
@@ -262,44 +263,44 @@ export function Slide08() {
                   className="glass-panel-dark rounded-3xl p-6"
                 >
                   <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-muted">
-                    Tu configuración
-                  </p>
+                    {tr("Tu configuración")}
+</p>
                   <div className="mt-4 space-y-2">
                     {controls.map((c) => (
                       <div key={c.id} className="flex items-center justify-between text-sm">
-                        <span className="text-ink-muted">{c.label}</span>
+                        <span className="text-ink-muted">{tr(c.label)}</span>
                         <button
                           type="button"
                           onClick={() => toggle(c.id)}
                           className="no-select rounded-full border border-hairline-dark px-3 py-1 text-xs tracking-wide"
                         >
-                          {c.options[state[c.id] ?? 0]}
+                          {tr(c.options[state[c.id] ?? 0])}
                         </button>
                       </div>
                     ))}
                   </div>
                   <p className="mt-4 text-sm text-ink-muted">
-                    {sport >= 4
+                    {tr(sport >= 4
                       ? "Configuración muy deportiva: respuesta directa y chasis firme."
                       : sport === 0
                         ? "Configuración de uso diario: suave, cómoda y fácil de conducir."
-                        : "Configuración mixta: puedes endurecer solo lo que te interesa."}
+                        : "Configuración mixta: puedes endurecer solo lo que te interesa.")}
                   </p>
                 </motion.div>
               ) : active ? (
-                <InfoCard key={active.id} tone="dark" title={active.label}>
-                  <p>{active.text[state[active.id] ?? 0]}</p>
+                <InfoCard key={active.id} tone="dark" title={tr(active.label)}>
+                  <p>{tr(active.text[state[active.id] ?? 0])}</p>
                   <button
                     type="button"
                     onClick={() => toggle(active.id)}
                     className="no-select mt-4 inline-flex items-center gap-3 rounded-full border border-hairline-dark px-4 py-2 text-xs tracking-[0.15em] uppercase"
                   >
                     <span className={cn((state[active.id] ?? 0) === 0 && "text-ink-foreground")}>
-                      {active.options[0]}
+                      {tr(active.options[0])}
                     </span>
                     <span className="text-ink-muted">←→</span>
                     <span className={cn((state[active.id] ?? 0) === 1 && "text-ink-foreground")}>
-                      {active.options[1]}
+                      {tr(active.options[1])}
                     </span>
                   </button>
                 </InfoCard>
@@ -311,8 +312,8 @@ export function Slide08() {
                   exit={{ opacity: 0 }}
                   className="text-sm text-ink-muted"
                 >
-                  Toca uno de los cinco mandos que rodean el volante.
-                </motion.p>
+                  {tr("Toca uno de los cinco mandos que rodean el volante.")}
+</motion.p>
               )}
             </AnimatePresence>
           </div>
@@ -341,7 +342,7 @@ export function Slide08() {
               <motion.img
                 key={active.id}
                 src={active.visual}
-                alt={active.label}
+                alt={tr(active.label)}
                 loading="lazy"
                 width={1200}
                 height={900}
@@ -381,7 +382,7 @@ export function Slide08() {
                   <span className={cn("h-4 w-[2px] -translate-y-2 rounded-full", on ? "bg-m-red" : "bg-ink-muted")} />
                 </motion.span>
                 <span className="mt-2 block text-center text-[10px] tracking-[0.16em] text-ink-muted uppercase">
-                  {c.label}
+                  {tr(c.label)}
                 </span>
               </button>
             );
@@ -403,6 +404,7 @@ const interiorSpots = [
 ];
 
 export function Slide09() {
+  const tr = useTr();
   const [sel, setSel] = useState<string | null>(null);
   const spot = interiorSpots.find((s) => s.id === sel);
 
@@ -411,12 +413,12 @@ export function Slide09() {
       <div className="flex flex-col gap-7">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <Eyebrow>09 · Interior</Eyebrow>
-            <h2 className="mt-5 text-4xl sm:text-5xl">Un puesto de conducción</h2>
+            <Eyebrow>{tr("09 · Interior")}</Eyebrow>
+            <h2 className="mt-5 text-4xl sm:text-5xl">{tr("Un puesto de conducción")}</h2>
           </div>
           <p className="max-w-sm text-sm text-muted-foreground">
-            Toca cualquier zona para acercarte y ver qué es.
-          </p>
+            {tr("Toca cualquier zona para acercarte y ver qué es.")}
+</p>
         </div>
 
         <div
@@ -446,7 +448,7 @@ export function Slide09() {
                 tone="dark"
                 x={s.x}
                 y={s.y}
-                label={s.label}
+                label={tr(s.label)}
                 active={sel === s.id}
                 onClick={() => setSel(sel === s.id ? null : s.id)}
               />
@@ -463,8 +465,8 @@ export function Slide09() {
                 transition={softSpring}
                 className="glass-panel absolute right-5 bottom-5 left-5 rounded-2xl p-5 sm:left-auto sm:max-w-sm"
               >
-                <h3 className="text-base font-medium">{spot.label}</h3>
-                <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{spot.text}</p>
+                <h3 className="text-base font-medium">{tr(spot.label)}</h3>
+                <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{tr(spot.text)}</p>
               </motion.div>
             )}
           </AnimatePresence>
@@ -473,7 +475,7 @@ export function Slide09() {
         <div className="flex flex-wrap gap-2 pb-8">
           {interiorSpots.map((s) => (
             <PillButton key={s.id} active={sel === s.id} onClick={() => setSel(sel === s.id ? null : s.id)}>
-              {s.label}
+              {tr(s.label)}
             </PillButton>
           ))}
         </div>

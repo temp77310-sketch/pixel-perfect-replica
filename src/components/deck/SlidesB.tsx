@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+import { useTr } from "./i18n";
 import { Eyebrow, Hotspot, InfoCard, PillButton, SlideShell, Source, Stat, softSpring, spring, useDragRotate } from "./ui";
 import hero from "@/assets/m4-hero.png";
 import engineImg from "@/assets/engine.png";
@@ -18,6 +19,7 @@ const designSpots = [
 ];
 
 export function Slide04() {
+  const tr = useTr();
   const [sel, setSel] = useState<string | null>(null);
   const { rot, handlers } = useDragRotate(10);
   const spot = designSpots.find((s) => s.id === sel);
@@ -27,8 +29,8 @@ export function Slide04() {
       <div className="grid gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.75fr)] lg:items-center">
         <div>
           <div className="lg:hidden">
-            <Eyebrow>04 · Diseño</Eyebrow>
-            <h2 className="mt-4 mb-6 text-4xl">Un coche inspeccionable</h2>
+            <Eyebrow>{tr("04 · Diseño")}</Eyebrow>
+            <h2 className="mt-4 mb-6 text-4xl">{tr("Un coche inspeccionable")}</h2>
           </div>
           <div
             data-no-swipe
@@ -70,7 +72,7 @@ export function Slide04() {
                 <Hotspot
                   x={s.x}
                   y={s.y}
-                  label={s.label}
+                  label={tr(s.label)}
                   active={sel === s.id}
                   onClick={() => setSel(sel === s.id ? null : s.id)}
                 />
@@ -81,28 +83,27 @@ export function Slide04() {
 
         <div data-no-swipe>
           <div className="hidden lg:block">
-            <Eyebrow>04 · Diseño</Eyebrow>
-            <h2 className="mt-4 text-4xl">Un coche inspeccionable</h2>
+            <Eyebrow>{tr("04 · Diseño")}</Eyebrow>
+            <h2 className="mt-4 text-4xl">{tr("Un coche inspeccionable")}</h2>
           </div>
           <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-            Toca cualquier punto para acercarte a esa zona. Arrastra sobre el coche para girarlo
-            ligeramente.
-          </p>
+            {tr("Toca cualquier punto para acercarte a esa zona. Arrastra sobre el coche para girarlo ligeramente.")}
+</p>
           <div className="mt-6 flex flex-wrap gap-2">
             {designSpots.map((s) => (
               <PillButton key={s.id} active={sel === s.id} onClick={() => setSel(s.id)}>
-                {s.label}
+                {tr(s.label)}
               </PillButton>
             ))}
             {spot && (
-              <PillButton onClick={() => setSel(null)}>← Ver coche entero</PillButton>
+              <PillButton onClick={() => setSel(null)}>{tr("← Ver coche entero")}</PillButton>
             )}
           </div>
           <div className="mt-5 min-h-[150px]">
             <AnimatePresence mode="wait">
               {spot && (
-                <InfoCard key={spot.id} title={spot.label}>
-                  {spot.text}
+                <InfoCard key={spot.id} title={tr(spot.label)}>
+                  {tr(spot.text)}
                 </InfoCard>
               )}
             </AnimatePresence>
@@ -123,6 +124,7 @@ const engineParts = [
 ];
 
 export function Slide05() {
+  const tr = useTr();
   const [sel, setSel] = useState<string | null>(null);
   const part = engineParts.find((p) => p.id === sel);
 
@@ -130,29 +132,28 @@ export function Slide05() {
     <SlideShell tone="dark">
       <div className="grid gap-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-center">
         <div data-no-swipe>
-          <Eyebrow tone="dark">05 · Motor</Eyebrow>
+          <Eyebrow tone="dark">{tr("05 · Motor")}</Eyebrow>
           <h2 className="mt-5 text-4xl sm:text-5xl">S58 biturbo</h2>
 
           <div className="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-3">
-            <Stat tone="dark" value="3.0 L" label="Cilindrada" />
-            <Stat tone="dark" value="6" label="Cilindros en línea" />
-            <Stat tone="dark" value="Biturbo" label="Sobrealimentación" />
-            <Stat tone="dark" value="530 CV" label="Potencia máxima" />
-            <Stat tone="dark" value="650 Nm" label="Par máximo" />
+            <Stat tone="dark" value="3.0 L" label={tr("Cilindrada")} />
+            <Stat tone="dark" value="6" label={tr("Cilindros en línea")} />
+            <Stat tone="dark" value="Biturbo" label={tr("Sobrealimentación")} />
+            <Stat tone="dark" value="530 CV" label={tr("Potencia máxima")} />
+            <Stat tone="dark" value="650 Nm" label={tr("Par máximo")} />
           </div>
 
           <div className="mt-6">
             <Source tone="dark">
-              530 CV corresponden al M4 Competition xDrive; el M4 Competition de tracción trasera
-              declara 510 CV. El par máximo es de 650 Nm en ambos.
-            </Source>
+              {tr("530 CV corresponden al M4 Competition xDrive; el M4 Competition de tracción trasera declara 510 CV. El par máximo es de 650 Nm en ambos.")}
+</Source>
           </div>
 
           <div className="mt-6 min-h-[130px]">
             <AnimatePresence mode="wait">
               {part && (
-                <InfoCard key={part.id} tone="dark" title={part.label}>
-                  {part.text}
+                <InfoCard key={part.id} tone="dark" title={tr(part.label)}>
+                  {tr(part.text)}
                 </InfoCard>
               )}
             </AnimatePresence>
@@ -182,7 +183,7 @@ export function Slide05() {
               tone="dark"
               x={p.x}
               y={p.y}
-              label={p.label}
+              label={tr(p.label)}
               active={sel === p.id}
               onClick={() => setSel(sel === p.id ? null : p.id)}
             />
@@ -198,6 +199,7 @@ export function Slide05() {
 const DURATION = 3.5;
 
 export function Slide06() {
+  const tr = useTr();
   const [speed, setSpeed] = useState(0);
   const [running, setRunning] = useState(false);
   const [elapsed, setElapsed] = useState(0);
@@ -233,12 +235,12 @@ export function Slide06() {
       <div className="flex flex-col gap-6">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
-            <Eyebrow>06 · Prestaciones</Eyebrow>
+            <Eyebrow>{tr("06 · Prestaciones")}</Eyebrow>
             <h2 className="mt-5 text-4xl sm:text-5xl">0 – 100 km/h</h2>
           </div>
           <div data-no-swipe>
             <PillButton onClick={start} active={running}>
-              {running ? "Acelerando…" : done ? "Repetir" : "START"}
+              {tr(running ? "Acelerando…" : done ? "Repetir" : "START")}
             </PillButton>
           </div>
         </div>
@@ -291,7 +293,7 @@ export function Slide06() {
                 className="mt-5 text-center"
               >
                 <span className="tabular font-display text-4xl font-medium">3,5 s</span>
-                <p className="mt-1 text-sm text-muted-foreground">de 0 a 100 km/h</p>
+                <p className="mt-1 text-sm text-muted-foreground">{tr("de 0 a 100 km/h")}</p>
               </motion.div>
             )}
           </AnimatePresence>
@@ -304,12 +306,11 @@ export function Slide06() {
 
         <div className="flex flex-wrap items-end gap-8">
           <Stat value="3,5 s" label="0–100 km/h · Competition xDrive" />
-          <Stat value="≈ 290 km/h" label="Velocidad máxima según versión y equipamiento" />
+          <Stat value="≈ 290 km/h" label={tr("Velocidad máxima según versión y equipamiento")} />
           <div className="max-w-sm">
             <Source>
-              La velocidad está limitada electrónicamente a 250 km/h; sube hasta unos 290 km/h con el
-              M Driver's Package. El M4 Competition de tracción trasera declara 3,9 s.
-            </Source>
+              {tr("La velocidad está limitada electrónicamente a 250 km/h; sube hasta unos 290 km/h con el M Driver's Package. El M4 Competition de tracción trasera declara 3,9 s.")}
+</Source>
           </div>
         </div>
       </div>
