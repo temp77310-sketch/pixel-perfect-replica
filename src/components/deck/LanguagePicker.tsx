@@ -23,8 +23,8 @@ export function LanguagePicker({ onPick }: { onPick: (l: Lang) => void }) {
           initial={{ x: "40%", opacity: 0, rotateY: -28, scale: 0.92 }}
           animate={{ x: "0%", opacity: 0.5, rotateY: [-28, 0, -4, 0], scale: 1 }}
           transition={{ duration: 3.2, ease: [0.22, 1, 0.36, 1] }}
-          className="car-shadow w-[min(760px,95vw)] max-w-none"
-          style={{ transformStyle: "preserve-3d" }}
+          className="car-shadow"
+          style={{ transformStyle: "preserve-3d", width: "min(760px, 92vw)" }}
           draggable={false}
         />
       </div>
