@@ -1,5 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import { Deck } from "@/components/deck/Deck";
+import { LanguagePicker } from "@/components/deck/LanguagePicker";
+import { LangContext, type Lang } from "@/components/deck/i18n";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -20,5 +23,15 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: Deck,
+  component: Home,
 });
+
+function Home() {
+  const [lang, setLang] = useState<Lang | null>(null);
+  if (!lang) return <LanguagePicker onPick={setLang} />;
+  return (
+    <LangContext.Provider value={lang}>
+      <Deck />
+    </LangContext.Provider>
+  );
+}
