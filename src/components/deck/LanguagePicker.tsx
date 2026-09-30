@@ -13,7 +13,7 @@ export function LanguagePicker({ onPick }: { onPick: (l: Lang) => void }) {
   return (
     <div className="fixed inset-0 flex flex-col items-center justify-center overflow-hidden bg-background px-6">
       {/* Coche entrando lentamente */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-[6%] flex justify-center" style={{ perspective: 1600 }}>
+      <div className="pointer-events-none absolute inset-x-0 -bottom-[4%] flex justify-center" style={{ perspective: 1600 }}>
         <motion.img
           src={hero}
           alt=""
@@ -21,9 +21,9 @@ export function LanguagePicker({ onPick }: { onPick: (l: Lang) => void }) {
           width={1600}
           height={900}
           initial={{ x: "40%", opacity: 0, rotateY: -28, scale: 0.92 }}
-          animate={{ x: "0%", opacity: 0.9, rotateY: [-28, 0, -4, 0], scale: 1 }}
+          animate={{ x: "0%", opacity: 0.5, rotateY: [-28, 0, -4, 0], scale: 1 }}
           transition={{ duration: 3.2, ease: [0.22, 1, 0.36, 1] }}
-          className="car-shadow w-[min(1100px,120vw)] max-w-none"
+          className="car-shadow w-[min(760px,95vw)] max-w-none"
           style={{ transformStyle: "preserve-3d" }}
           draggable={false}
         />
@@ -33,7 +33,7 @@ export function LanguagePicker({ onPick }: { onPick: (l: Lang) => void }) {
         initial={{ opacity: 0, y: 24, filter: "blur(10px)" }}
         animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
         transition={{ duration: 1.1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-        className="relative z-10 -mt-[28vh] flex flex-col items-center text-center"
+        className="relative z-10 -mt-[22vh] flex flex-col items-center text-center"
       >
         <span className="m-stripe mb-6 h-[3px] w-10 rounded-full" />
         <h1 className="text-4xl sm:text-6xl">BMW M4 Competition</h1>
